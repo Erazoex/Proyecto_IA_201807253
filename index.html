@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto IA1 201807253</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
+</head>
+
+<body class="container mx-auto mt-4 p-4">
+  <div class="container mx-auto mt-4 p-4">
+    <h1 class="text-3xl font-bold mb-4 text-right">Proyecto Inteligencia Artificial 1: Machine Learning</h1>
+    <h2 id="selectedMethodText" class="text-xl font-semibold mb-4 text-right">Bienvenido Al Proyecto!</h2>
+
+    <!-- Selección de algoritmo de ML -->
+    <div class="mb-4">
+      <label for="selection" class="block text-lg font-medium mb-2">Seleccione uno de los siguientes Modelos de Machine
+        Learning:</label>
+      <select id="selectOption" class="block w-full p-2 border border-gray-300 rounded-md"
+        onchange="handleOnChangeSelectedOption()">
+        <option value=""></option>
+        <option value="regresionLineal">Regresión Lineal</option>
+        <option value="regresionPolinomial">Regresión Polinómica</option>
+        <option value="arbolDeDecision">Árbol de Decisión</option>
+        <option value="naiveBayes">Naive Bayes</option>
+        <option value="redNeuronal">Red Neuronal</option>
+        <option value="k-means">K-Means</option>
+        <option value="k-nearestNeighbor">K-Nearest Neighbor</option>
+      </select>
+    </div>
+
+    <!-- Selección de archivo CSV para configurar -->
+    <div id="firstFileUpload"
+      class="mb-4 hidden border-2 border-dashed border-gray-300 rounded-md p-6 bg-gray-50 hover:bg-gray-100 transition-all flex flex-col justify-center items-center"
+      ondragover="event.preventDefault()" ondrop="handleFileDrop(event, 'firstFileUploadInput')">
+      <svg class="w-12 h-12 mb-2 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+        viewBox="0 0 30 30">
+        <path d="M3 3v18h18V8.83L15.17 3H3zm14 1.5L19.5 7H17V4.5zM4 5h10v5h5v10H4V5z" />
+        <text x="7" y="19" font-size="10" font-weight="bold" fill="green">CSV</text>
+      </svg>
+      <label id="firstFileUploadLabel" for="firstFileUploadInput" class="block text-lg font-medium mb-2">Arrastra un
+        archivo CSV o haz clic para seleccionarlo:</label>
+      <input type="file" id="firstFileUploadInput" accept=".csv"
+        class="block w-full border border-gray-300 rounded-md p-2 file-input"
+        onchange="displayFileName('firstFileUploadInput', 'firstFileUploadLabel')" />
+    </div>
+
+    <!-- Carga de segundo archivo CSV para entrenar -->
+    <div id="secondFileUpload"
+      class="mb-4 hidden border-2 border-dashed border-gray-300 rounded-md p-6 bg-gray-50 hover:bg-gray-100 transition-all flex flex-col justify-center items-center"
+      ondragover="event.preventDefault()" ondrop="handleFileDrop(event, 'secondFileUploadInput')">
+      <svg class="w-12 h-12 mb-2 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+        viewBox="0 0 30 30">
+        <path d="M3 3v18h18V8.83L15.17 3H3zm14 1.5L19.5 7H17V4.5zM4 5h10v5h5v10H4V5z" />
+        <text x="7" y="19" font-size="10" font-weight="bold" fill="green">CSV</text>
+      </svg>
+      <label id="secondFileUploadLabel" for="secondFileUploadInput" class="block text-lg font-medium mb-2">Arrastra un
+        archivo CSV o haz clic para seleccionarlo:</label>
+      <input type="file" id="secondFileUploadInput" accept=".csv"
+        class="block w-full border border-gray-300 rounded-md p-2 file-input"
+        onchange="displayFileName('secondFileUploadInput', 'secondFileUploadLabel')" />
+    </div>
+
+    <!-- Carga de tercer archivo CSV para predecir -->
+    <div id="thirdFileUpload"
+      class="mb-4 hidden border-2 border-dashed border-gray-300 rounded-md p-6 bg-gray-50 hover:bg-gray-100 transition-all flex flex-col justify-center items-center"
+      ondragover="event.preventDefault()" ondrop="handleFileDrop(event, 'thirdFileUploadInput')">
+      <svg class="w-12 h-12 mb-2 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+        viewBox="0 0 30 30">
+        <path d="M3 3v18h18V8.83L15.17 3H3zm14 1.5L19.5 7H17V4.5zM4 5h10v5h5v10H4V5z" />
+        <text x="7" y="19" font-size="10" font-weight="bold" fill="green">CSV</text>
+      </svg>
+      <label id="thirdFileUploadLabel" for="thirdFileUploadInput" class="block text-lg font-medium mb-2">Arrastra un
+        archivo CSV o haz clic para seleccionarlo:</label>
+      <input type="file" id="thirdFileUploadInput" accept=".csv"
+        class="block w-full border border-gray-300 rounded-md p-2 file-input"
+        onchange="displayFileName('thirdFileUploadInput', 'thirdFileUploadLabel')" />
+    </div>
+
+
+
+    <!-- Selección de columnas para ejes X e Y -->
+    <div class="container mx-auto mt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <div id="xAxis" class="mb-4 hidden">
+            <label for="xAxisSelect" class="block text-lg font-medium mb-2">Eje X:</label>
+            <select id="xAxisSelect" class="block w-full border border-gray-300 rounded-md p-2"></select>
+          </div>
+        </div>
+
+        <div>
+          <div id="yAxis" class="mb-4 hidden">
+            <label for="yAxisSelect" class="block text-lg font-medium mb-2">Eje Y:</label>
+            <select id="yAxisSelect" class="block w-full border border-gray-300 rounded-md p-2"></select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- REGRESION POLINOMIAL -->
+    <div id="polynomialContainer" class="mb-4 hidden">
+      <label for="polynomial" class="block text-lg font-medium mb-2">Grado de la Regresión Polinomial:</label>
+      <input type="number" id="polynomial" min="1" max="10" value="2"
+        class="block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+
+    <div id="trainPercentageContainer" class="mb-4 hidden">
+      <label for="trainPercentage" class="block text-lg font-medium mb-2">Porcentaje de Precisión de
+        Entrenamiento:</label>
+      <input type="number" id="trainPercentage" min="1" max="100" value="80"
+        class="block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+
+    <!-- NAIVE BAYES -->
+    <div id="naiveBayesFormContainer" class="hidden"></div>
+
+    <!-- Botón de Resultados -->
+    <div class="container text-right">
+      <button id="resultButton" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md mt-4 hidden">Generar
+        Resultados</button>
+    </div>
+
+    <!-- Contenedor de Prediccion Resultados -->
+    <div id="naiveBayesPredictionContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
+      <h3 class="text-xl font-bold mb-2">Resultado de la Predicción Naive Bayes</h3>
+      <p id="naiveBayesPredictionText"></p>
+    </div>
+
+    <!-- Contenedor de Resultados Red Neuronal -->
+    <div id="neuralNetworkPredictionContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
+      <h3 class="text-xl font-bold mb-2">Resultados de la Predicción de la Red Neuronal</h3>
+      <p id="neuralNetworkPredictionText"></p>
+    </div>
+
+    <!-- Contenedor para mostrar pesos -->
+    <div id="neuralNetworkWeightsContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
+      <h3 class="text-xl font-bold mb-2">Pesos de la Primera Capa</h3>
+      <p id="neuralNetworkWeightsText"></p>
+    </div>
+
+    <!-- Contenedor para mostrar sesgos -->
+    <div id="neuralNetworkBiasesContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
+      <h3 class="text-xl font-bold mb-2">Sesgos de la Primera Capa</h3>
+      <p id="neuralNetworkBiasesText"></p>
+    </div>
+
+    <div id="chartkmean" class="mt-6 w-full h-full"></div>
+    <div id="tree" class="mt-6 w-full h-full"></div>
+    <canvas id="chart" class="mt-6"></canvas>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="text/javascript" src="tytusjs-main/dist/tytus.js"></script>
+    <script src="main.js"></script>
+    <script src="functions.js"></script>
+  </div>
+</body>
+
+</html>
