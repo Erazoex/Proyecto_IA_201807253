@@ -128,7 +128,7 @@ function handleOnChangeSelectedOption() {
         selectedMethodText.innerHTML = "Modelo de Árbol de Decisión";
 
         // Grafica 
-        chart.style.Display = "display";
+        chart.style.Display = "none";
 
         // File Uploads
         firstFileUpload.style.display = "block";
