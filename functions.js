@@ -46,7 +46,7 @@ function handleOnChangeSelectedOption() {
 
     if (selectedOption === "regresionLineal") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de Regresión Lineal";
+        selectedMethodText.innerHTML = "Modelo de Regresión Lineal";
 
         // Grafica 
         chart.style.Display = "Display";
@@ -79,14 +79,14 @@ function handleOnChangeSelectedOption() {
         neuralNetworkBiasesContainer.style.display = "none";
 
         // Contenedor arbol
-        tree.style.display = "block";
+        tree.style.display = "none";
 
 
         // Boton para generar los resultados
         resultButton.classList.remove('hidden');
     } else if (selectedOption === "regresionPolinomial") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de Regresión Polinomial";
+        selectedMethodText.innerHTML = "Modelo de Regresión Polinomial";
 
         // Grafica 
         chart.style.Display = "display";
@@ -125,7 +125,7 @@ function handleOnChangeSelectedOption() {
         resultButton.classList.remove('hidden');
     } else if (selectedOption === "arbolDeDecision") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de Árbol de Decisión";
+        selectedMethodText.innerHTML = "Modelo de Árbol de Decisión";
 
         // Grafica 
         chart.style.Display = "display";
@@ -159,12 +159,13 @@ function handleOnChangeSelectedOption() {
 
         // Contenedor arbol
         tree.style.display = "block";
+        tree.innerHTML = "";
 
         // Boton para generar los resultados
         resultButton.classList.remove('hidden');
     } else if (selectedOption === "naiveBayes") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de Naive Bayes";
+        selectedMethodText.innerHTML = "Modelo de Naive Bayes";
 
         // Grafica 
         chart.style.Display = "none";
@@ -203,7 +204,7 @@ function handleOnChangeSelectedOption() {
         resultButton.classList.remove('hidden');
     } else if (selectedOption === "redNeuronal") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de Red Neuronal";
+        selectedMethodText.innerHTML = "Modelo de Red Neuronal";
 
         // Grafica 
         chart.style.Display = "block";
@@ -242,7 +243,7 @@ function handleOnChangeSelectedOption() {
         resultButton.classList.remove('hidden');
     } else if (selectedOption === "k-means") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de K-Means";
+        selectedMethodText.innerHTML = "Modelo de K-Means";
 
         // Grafica 
         chart.style.Display = "block";
@@ -281,7 +282,7 @@ function handleOnChangeSelectedOption() {
         resultButton.classList.remove('hidden');
     } else if (selectedOption === "k-nearestNeighbor") {
         // Titulo
-        selectedMethodText.innerHTML = "Método de K-Nearest Neighbor";
+        selectedMethodText.innerHTML = "Modelo de K-Nearest Neighbor";
 
         // Grafica 
         chart.style.Display = "block";

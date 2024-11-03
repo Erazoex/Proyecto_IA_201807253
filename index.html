@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proyecto IA1 201807253</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
 </head>
 
@@ -15,7 +14,7 @@
     <h1 class="text-3xl font-bold mb-4 text-right">Proyecto Inteligencia Artificial 1: Machine Learning</h1>
     <h2 id="selectedMethodText" class="text-xl font-semibold mb-4 text-right">Bienvenido Al Proyecto!</h2>
 
-    <!-- Selección de algoritmo de ML -->
+    <!-- Select de Modelo de Machine Learning -->
     <div class="mb-4">
       <label for="selection" class="block text-lg font-medium mb-2">Seleccione uno de los siguientes Modelos de Machine
         Learning:</label>
@@ -127,38 +126,48 @@
 
     <!-- Contenedor de Prediccion Resultados -->
     <div id="naiveBayesPredictionContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
-      <h3 class="text-xl font-bold mb-2">Resultado de la Predicción Naive Bayes</h3>
+      <h3 class="text-xl font-bold mb-2">Resultado</h3>
       <p id="naiveBayesPredictionText"></p>
     </div>
 
     <!-- Contenedor de Resultados Red Neuronal -->
     <div id="neuralNetworkPredictionContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
-      <h3 class="text-xl font-bold mb-2">Resultados de la Predicción de la Red Neuronal</h3>
+      <h3 class="text-xl font-bold mb-2">Resultados</h3>
       <p id="neuralNetworkPredictionText"></p>
     </div>
 
     <!-- Contenedor para mostrar pesos -->
     <div id="neuralNetworkWeightsContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
-      <h3 class="text-xl font-bold mb-2">Pesos de la Primera Capa</h3>
+      <h3 class="text-xl font-bold mb-2">Pesos:</h3>
       <p id="neuralNetworkWeightsText"></p>
     </div>
 
     <!-- Contenedor para mostrar sesgos -->
     <div id="neuralNetworkBiasesContainer" class="border border-gray-300 rounded-md p-4 mt-4 hidden">
-      <h3 class="text-xl font-bold mb-2">Sesgos de la Primera Capa</h3>
+      <h3 class="text-xl font-bold mb-2">Sesgos:</h3>
       <p id="neuralNetworkBiasesText"></p>
     </div>
 
-    <div id="chartkmean" class="mt-6 w-full h-full"></div>
-    <div id="tree" class="mt-6 w-full h-full"></div>
+    <div id="chartKMeans" class="mt-6 w-full h-full"></div>
+
+    <div id="tree" class="mt-6 w-full h-full border border-gray-300 rounded-md p-4 mt-4 hidden" style="width: 600px; height: 500px"></div>
     <canvas id="chart" class="mt-6"></canvas>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script type="text/javascript" src="tytusjs-main/dist/tytus.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="linear-regression.js"></script>
+    <script type="module" src="polynomial-regression.js"></script>
+    <script type="module" src="decision-tree.js"></script>
+    <script type="module" src="naive-bayes.js"></script>
+    <script type="module" src="neural-network.js"></script>
+    <script type="module" src="k-Means.js"></script>
+    <script type="module" src="k-Nearest-Neighbor.js"></script>
+    <script type="module" src="main.js"></script>
     <script src="functions.js"></script>
   </div>
 </body>
