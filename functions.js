@@ -49,7 +49,8 @@ function handleOnChangeSelectedOption() {
         selectedMethodText.innerHTML = "Modelo de Regresión Lineal";
 
         // Grafica 
-        chart.style.Display = "Display";
+        chart.style.Display = "block";
+        
 
         // File Uploads
         firstFileUpload.style.display = "block";
@@ -88,8 +89,8 @@ function handleOnChangeSelectedOption() {
         // Titulo
         selectedMethodText.innerHTML = "Modelo de Regresión Polinomial";
 
-        // Grafica 
-        chart.style.Display = "display";
+        // Grafica
+        chart.style.Display = "block";
 
         // File Uploads
         firstFileUpload.style.display = "block";
